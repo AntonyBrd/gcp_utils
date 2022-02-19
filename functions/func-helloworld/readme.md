@@ -2,12 +2,28 @@
 
 ## Test locally this function
 
-From [Google Documentation](https://cloud.google.com/functions/docs/running/function-frameworks#functions-local-ff-install-python):
+See Official Google Documentation :
+* [GCP Doc](https://cloud.google.com/functions/docs/running/function-frameworks#functions-local-ff-install-python)
+* [Github](https://github.com/GoogleCloudPlatform/functions-framework-python)
 
+Make sure you have a virtual env up and running:
 ```sh
+python -m venv func
+source func/Scripts/activate
+
 pip install functions-framework
 ```
 
+Start your function server
+```sh
+cd ./functions/func_helloworld
+functions_framework --target=hello_http
+```
+
+Call your function
+```sh
+$ curl -X POST -H "Content-Type: application/cloudevents+json" -d "{\"name\": \"toto\"}" http://192.168.1.86:8080/
+```
 
 ## Deploy this function
 
@@ -34,6 +50,8 @@ gcloud functions deploy func_helloworld \
 ```
 
 ## To deploy on GCP
+
+In order to make my CI CD pipeline working I had to give a specific right to my service account:
 
 ```sh
 gcloud iam service-accounts \

@@ -17,11 +17,14 @@ jobs:
         with:
           credentials_json: "${{ secrets.SA_KEY }}"
 
+      - id: tmp_task
+        run: ls -r
+
       - name: deploy cloud function
         id: deploy
         uses: google-github-actions/deploy-cloud-functions@v0
         with:
-          source_dir: functions/${{ env.FUNCTION_NAME }}
+          source_dir: gcp_utils/functions/${{ env.FUNCTION_NAME }}
           name: func_helloworld
           runtime: python39
           project_id: ${{env.PROJECT}}

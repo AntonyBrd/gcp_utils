@@ -33,6 +33,14 @@ gcloud functions deploy func_helloworld \
     --service-account github-actions@antony-brd.iam.gserviceaccount.com 
 ```
 
+## To deploy on GCP
+
+```sh
+gcloud iam service-accounts \
+   add-iam-policy-binding github-actions@antony-brd.iam.gserviceaccount.com  \
+   --member='serviceAccount:github-actions@antony-brd.iam.gserviceaccount.com' \
+   --role=roles/iam.serviceAccountUser
+```
 
 
 

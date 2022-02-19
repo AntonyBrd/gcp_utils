@@ -21,12 +21,13 @@ jobs:
         id: deploy
         uses: google-github-actions/deploy-cloud-functions@v0
         with:
-          source_dir: functions
+          source_dir: functions/${{ env.FUNCTION_NAME }}
           name: func_helloworld
           runtime: python39
           project_id: ${{env.PROJECT}}
           entry_point: hello_http
           region: europe-west1
+          description: bla
           service_account_email: github-actions@antony-brd.iam.gserviceaccount.com
           max_instances: 2
 

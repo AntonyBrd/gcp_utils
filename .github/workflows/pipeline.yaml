@@ -1,7 +1,7 @@
 name: Deploy Cloud Function
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 env:
   PROJECT: antony-brd
   FUNCTION_NAME: func_helloworld
@@ -10,19 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
       - uses: actions/checkout@v2
 
-      - name: Setup GCP Service Account
-        uses: google-github-actions/setup-gcloud@master
+      - id: "auth"
+        uses: "google-github-actions/auth@v0"
         with:
-          project_id: ${{ env.PROJECT }}
-          service_account_key: ${{ secrets.GCP_SA }}
-          export_default_credentials: true
+          credentials_json: "${{ secrets.SA_KEY }}"
 
       - name: deploy cloud function
         id: deploy
-        uses: google-github-actions/deploy-cloud-functions@main
+        uses: google-github-actions/deploy-cloud-functions@v0
         with:
           source_dir: functions
           name: func_helloworld
@@ -34,10 +31,10 @@ jobs:
           description: Sample for my own learning
           service_account_email: github-actions@antony-brd.iam.gserviceaccount.com
           max_instances: 2
-          
+
       - name: print function version and ID
         run: |
-         echo "Function ${{ env.FUNCTION_NAME }} version ${{ steps.deploy.outputs.version }} has been deployed with ID ${{ steps.deploy.outputs.id }}"
+          echo "Function ${{ env.FUNCTION_NAME }} version ${{ steps.deploy.outputs.version }} has been deployed with ID ${{ steps.deploy.outputs.id }}"
 
       - name: test the url
         run: curl "${{ steps.deploy.outputs.url }}"

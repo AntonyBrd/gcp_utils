@@ -3,7 +3,6 @@ on:
   push:
     branches: [main]
 env:
-  PROJECT: antony-brd
   FUNCTION_NAME: func_helloworld
 
 jobs:
@@ -18,16 +17,16 @@ jobs:
           credentials_json: "${{ secrets.SA_KEY }}"
 
       - id: tmp_task
-        run: ls -r
+        run: |
+          cd functions
 
       - name: deploy cloud function
         id: deploy
         uses: google-github-actions/deploy-cloud-functions@v0
         with:
-          source_dir: gcp_utils/functions/${{ env.FUNCTION_NAME }}
-          name: func_helloworld
+          name: ${{ env.FUNCTION_NAME }}
           runtime: python39
-          project_id: ${{env.PROJECT}}
+          project_id: ${{env.GCP_PROJECT}}
           entry_point: hello_http
           region: europe-west1
           description: bla

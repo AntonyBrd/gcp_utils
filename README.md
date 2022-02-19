@@ -3,7 +3,7 @@
 Template project for GCP.
 ## Architecture
 
-Embeded png:
+Embedded png file generated in VS Code via the drawio extension:
 
 ![Architecture](./archi.png)
 

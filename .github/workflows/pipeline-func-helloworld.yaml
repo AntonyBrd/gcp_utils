@@ -3,11 +3,10 @@ on:
   push:
     branches: [main]
 env:
-  PROJECT: antony-brd
   FUNCTION_NAME: func_helloworld
 
 jobs:
-  deploy:
+  deploy_helloworld:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,7 +23,7 @@ jobs:
           source_dir: ./functions/func-helloworld
           name: func_helloworld
           runtime: python39
-          project_id: ${{env.PROJECT}}
+          project_id: ${{env.GCP_PROJECT}}
           entry_point: hello_http
           region: europe-west1
           description: bla

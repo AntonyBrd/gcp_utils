@@ -27,7 +27,7 @@ jobs:
           project_id: ${{env.PROJECT}}
           entry_point: hello_http
           region: europe-west1
-          labels: app=myApp1
+          labels: app=MYAPP1
           description: Sample for my own learning
           service_account_email: github-actions@antony-brd.iam.gserviceaccount.com
           max_instances: 2

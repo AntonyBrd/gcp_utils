@@ -1,4 +1,3 @@
-import uvicorn
 import os
 import time
 from typing import Any, Callable
@@ -27,8 +26,3 @@ async def add_process_time_header(request: Request, call_next: Callable) -> Any:
     process_time = time.time() - start_time
     response.headers["X-Process-Time"] = str(process_time)
     return response
-
-
-def start():
-    """Launched with `poetry run start` at root level"""
-    uvicorn.run("pocrapi.main:app", host="0.0.0.0", port=8000, reload=True, proxy_headers=True)

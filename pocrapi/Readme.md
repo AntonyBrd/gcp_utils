@@ -139,14 +139,18 @@ Attempt #2
 Remove host and port in Dockerfile to match [this tutorial](https://cloud.google.com/run/docs/tutorials/secure-services), then:
 
 ```sh
+version=1.0.0
 # Build and push in one command 
-gcloud builds submit --tag gcr.io/antony-brd/pocrapi:0.1.0
+gcloud builds submit --tag gcr.io/antony-brd/pocrapi:${version}
 
 # Create an empty service account
 gcloud iam service-accounts create pocrapi-account
 
 # Deploy
-gcloud run deploy pocrapi  --platform managed --region europe-west4  --image gcr.io/antony-brd/pocrapi:0.1.0  --service-account pocrapi-account   --no-allow-unauthenticated
+gcloud run deploy pocrapi  --platform managed --region europe-west4  --image gcr.io/antony-brd/pocrapi:${version}  --service-account pocrapi-account   --no-allow-unauthenticated
+# Test API
+TOKEN=$(gcloud auth print-identity-token)
+curl -H "Authorization: Bearer $TOKEN"    -H 'Content-Type: text/plain'   https://pocrapi-ewhwlsvqqa-ez.a.run.app/weather
 ```
 
 

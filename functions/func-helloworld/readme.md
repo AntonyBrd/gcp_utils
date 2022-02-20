@@ -8,8 +8,8 @@ See Official Google Documentation :
 
 Make sure you have a virtual env up and running:
 ```sh
-python -m venv func
-source func/Scripts/activate
+python -m venv <env_name>
+source <env_name>/Scripts/activate
 
 pip install functions-framework
 ```

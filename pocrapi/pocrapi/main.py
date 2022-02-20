@@ -14,7 +14,11 @@ app = FastAPI(
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Hello World !!!"}
+
+@app.get("/weather")
+async def root():
+    return {"message": "Here is the default weather: Sunny !"}
 
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next: Callable) -> Any:
@@ -26,4 +30,5 @@ async def add_process_time_header(request: Request, call_next: Callable) -> Any:
 
 
 def start():
-    uvicorn.run("cloudrun-api.main:app", host="0.0.0.0", port=8000, reload=True)
+    """Launched with `poetry run start` at root level"""
+    uvicorn.run("pocrapi.main:app", host="0.0.0.0", port=8000, reload=True)

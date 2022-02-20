@@ -1,6 +1,6 @@
 #### MY IGNORE
 p310/
-
+*credentials*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

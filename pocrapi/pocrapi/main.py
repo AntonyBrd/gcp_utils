@@ -31,4 +31,4 @@ async def add_process_time_header(request: Request, call_next: Callable) -> Any:
 
 def start():
     """Launched with `poetry run start` at root level"""
-    uvicorn.run("pocrapi.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("pocrapi.main:app", host="0.0.0.0", port=8000, reload=True, proxy_headers=True)

@@ -1,8 +1,12 @@
 from pydantic import BaseModel
-
-class Item(BaseModel):
-    name: str
+from datetime import datetime
+class WeatherForcast(BaseModel):
+    weather: str
     description: str | None = None
-    price: float
-    tax: float | None = None
-    tags: list[str] = []
+    icon: str | None = None
+    date_time: datetime | None = None
+    temperature: float | None = None
+    humidity: float | None = None
+    feels_like: float | None = None
+    wind_speed: float | None = None
+    lastupdate: datetime

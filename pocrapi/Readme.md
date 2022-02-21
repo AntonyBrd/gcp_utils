@@ -83,10 +83,18 @@ CMD poetry run start
 poetry export -f requirements.txt --output requirements.txt
 
 
-### Fast API
+### Fast API + Google Cloud DataStore (Back End)
 
-Refer te official [Fast API Documentation]()
+Refer to the official [Fast API Documentation](https://fastapi.tiangolo.com/) and Specifically on [background tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/)
 
+
+Datastore and Fire store are very similar : https://github.com/anthonycorletti/firestore-fastapi
+
+
+### React (Front End)
+
+* https://testdriven.io/blog/fastapi-react/
+* https://cloud.google.com/community/tutorials/deploy-react-nginx-cloud-run
 ### Cloud Run
 
 Contenerize your app
@@ -111,6 +119,7 @@ docker rm -f app1
 
 Now try the following [tutorial](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-python-service).
 
+Attempt #1
 
 ```sh
 # Authenticate to Google Cloud Registry (gcr.io)
